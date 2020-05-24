@@ -46,8 +46,8 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
         {
             var covertedColor = Color.HSVToRGB((baseH + ((float)i) / colorsAmount) % 1f, baseS, baseV);
             ColorPalette.Add(i, new Color32((byte)(covertedColor.r * 255), (byte)(covertedColor.g * 255), (byte)(covertedColor.b * 255), 255));
-            Debug.Log($"Generated H {baseH + i / colorsAmount}");
-            Debug.Log($"Generated Color {covertedColor}");
+            //Debug.Log($"Generated H {baseH + i / colorsAmount}");
+            //Debug.Log($"Generated Color {covertedColor}");
         }
     }
 
