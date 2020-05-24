@@ -5,10 +5,6 @@ using System.Linq;
 
 public class BucketHorizontal : Bucket
 {
-    public BucketHorizontal(Cell cell, Color32 paintColor) : base(cell, paintColor)
-    {
-
-    }
 
     //public Cell cell = null;
     //public Color32 paintColor;

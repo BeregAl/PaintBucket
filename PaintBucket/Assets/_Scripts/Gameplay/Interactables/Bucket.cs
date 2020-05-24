@@ -23,7 +23,7 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
         Random = 2,
     }
 
-
+    /*
     private static Bucket bucket;
     public static Bucket Create(BucketType bucketType, Cell cell, Color32 paintColor, string bucketName = null)
     {
@@ -46,7 +46,7 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
         }
 
         return bucket;
-    }
+    }*/
 
     /*public BucketHorizontal CreateBucketHorizontal(GameObject _obj, Cell _cell, Color32 _paintColor, string _bucketName = null)
     {
@@ -75,14 +75,5 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
     {
     }
 
-
-
-    public Bucket(Cell _cell, Color32 _paintColor, string _bucketName = null, BucketType _bucketType = BucketType.Random)
-    {
-        bucketType = _bucketType;
-        cell = _cell;
-        paintColor = _paintColor;
-        //bucketName = _bucketName;
-    }
-
+    
 }
