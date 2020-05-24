@@ -7,10 +7,17 @@ public class BucketCircle : Bucket
 {
     public override void OnPress()
     {
-        var _targetCells = Gameplay.currentRiddle.riddleCells.Where(x => Mathf.Abs( x.coordinates.y - cell.coordinates.y) <=1 && Mathf.Abs(x.coordinates.x - cell.coordinates.x) <=1);
-        foreach (var cell in _targetCells)
+        foreach (var cell in AffectedCells)
         {
             cell.cellGraphic.SetColor(paintColor);
         }
+        base.OnPress();
+    }
+    public override void SetAffectedCells()
+    {
+        AffectedCells = RiddleGenerator.instance.currentRiddleGeneration.riddleCells
+            .Where(x => Mathf.Abs(x.coordinates.y - cell.coordinates.y) <= 1 && 
+                        Mathf.Abs(x.coordinates.x - cell.coordinates.x) <= 1)
+                        .ToList<Cell>();
     }
 }

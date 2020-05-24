@@ -21,6 +21,7 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     public Dictionary<int, Color32> ColorPalette = new Dictionary<int, Color32>();
 
     public UnityAction<RiddleInfo> onRiddleGenerated;
+    public RiddleInfo currentRiddleGeneration;
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +32,9 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     public void GenerateRiddle()
     {
         GenerateColors(5);
-        var riddle = CreateEmptyBase(new Vector2Int(5, 5));
-        PopulateBaseWithBuckets(riddle);
-        onRiddleGenerated(riddle);
+        currentRiddleGeneration = CreateEmptyBase(new Vector2Int(5, 5));
+        PopulateBaseWithBuckets(currentRiddleGeneration);
+        onRiddleGenerated(currentRiddleGeneration);
     }
 
 
@@ -80,9 +81,11 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     public GameObject test;
     private void PopulateBaseWithBuckets(RiddleInfo riddle)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             var randomCell = riddle.riddleCells[Random.Range(0, riddle.riddleCells.Count)];
+            if (randomCell.bucketInCell != null)
+                continue;
             var randomColor = ColorPalette[Random.Range(0, ColorPalette.Count)];
 
             var _pickedPrefab = Instantiate(_bucketsLibrary[Random.Range(0, _bucketsLibrary.Count)], randomCell.transform);

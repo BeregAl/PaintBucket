@@ -11,10 +11,17 @@ public class BucketHorizontal : Bucket
 
     public override void OnPress()
     {
-        var _targetCells = Gameplay.currentRiddle.riddleCells.Where(x => x.coordinates.y == cell.coordinates.y);
-        foreach (var cell in _targetCells)
+        foreach (var cell in AffectedCells)
         {
             cell.cellGraphic.SetColor(paintColor);
         }
+
+        base.OnPress();
+    }
+
+    public override void SetAffectedCells()
+    {
+        AffectedCells = RiddleGenerator.instance.currentRiddleGeneration.riddleCells
+            .Where(x => x.coordinates.y == cell.coordinates.y).ToList<Cell>();
     }
 }

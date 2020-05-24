@@ -8,19 +8,38 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
 {
 
     public BucketType bucketType;
-    public Cell cell = null;
+
+    private Cell _cell;
+    public Cell cell
+    {
+        get
+        {
+            return _cell;
+        }
+        set
+        {
+            _cell = value;
+            SetAffectedCells();
+        }
+    }
+
     public Color32 paintColor;
     //public string bucketName;
     public BucketGraphics bucketGraphics;
 
     public Button button;
 
+    public List<Cell> AffectedCells;
 
     public enum BucketType
     {
         Horizontal = 0,
         Vertical = 1,
         Random = 2,
+    }
+    public virtual void SetAffectedCells()
+    {
+
     }
 
     /*
@@ -73,6 +92,7 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
 
     public virtual void OnPress()
     {
+        Destroy(this.gameObject);
     }
 
     
