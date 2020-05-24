@@ -1,17 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
-public class BucketHorizontal : Bucket
+/*public class BucketHorizontal : Bucket
 {
-    public BucketHorizontal(Cell cell, Color32 paintColor) : base(cell, paintColor)
+    public BucketHorizontal(Bucket bucket) : base(bucket)
     {
-
     }
-
-    //public Cell cell = null;
-    //public Color32 paintColor;
 
     public override void OnPress()
     {
@@ -21,4 +17,17 @@ public class BucketHorizontal : Bucket
             cell.cellGraphic.SetColor(paintColor);
         }
     }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
+*/

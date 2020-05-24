@@ -256,52 +256,13 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: _bucketsLibrary
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[Bucket, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 1|BucketHorizontal, Assembly-CSharp
-    - Name: cell
-      Entry: 6
-      Data: 
-    - Name: paintColor
-      Entry: 7
-      Data: UnityEngine.Color32, UnityEngine.CoreModule
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: ColorPalette
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[UnityEngine.Color32,
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[UnityEngine.Color32,
         UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
@@ -321,6 +282,10 @@ MonoBehaviour:
   _emptyCell: {fileID: 6580592716881483288, guid: e516ccf93fd53b449a3ed6aca5b4194f,
     type: 3}
   _riddleGrid: {fileID: 725628988}
+  _bucketsLibrary:
+  - {fileID: 1423572022046878222, guid: 1f51f243f96e673418448dc6f31374c9, type: 3}
+  - {fileID: 8997819377292519230, guid: c9fb2b9113e9d004fb149748f1915a6a, type: 3}
+  test: {fileID: 0}
 --- !u!1 &725628986
 GameObject:
   m_ObjectHideFlags: 0
