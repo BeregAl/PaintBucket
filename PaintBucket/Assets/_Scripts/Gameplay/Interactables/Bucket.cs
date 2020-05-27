@@ -31,6 +31,21 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
 
     public List<Cell> AffectedCells;
 
+    private int _orderInRiddle = 1;
+    public int orderInRiddle
+    {
+        get
+        {
+            return _orderInRiddle;
+        }
+        set
+        {
+            _orderInRiddle = value;
+            bucketGraphics.SetNumber(value);
+
+        }
+    }
+
     public enum BucketType
     {
         Horizontal = 0,
@@ -92,7 +107,11 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
 
     public virtual void OnPress()
     {
-        Destroy(this.gameObject);
+        if (orderInRiddle == Gameplay.currentRiddleStep)
+        {
+            Gameplay.currentRiddleStep++;
+            Destroy(this.gameObject);
+        }
     }
 
     

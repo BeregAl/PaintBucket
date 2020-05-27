@@ -40,6 +40,7 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
 
     private void GenerateColors(int colorsAmount = 3)
     {
+        ColorPalette.Clear();
         var baseColor = UnityEngine.Random.ColorHSV(0, 1, 0.5f, 1f, 1f, 1f, 1f, 1f);
         Color.RGBToHSV(baseColor, out float baseH, out float baseS, out float baseV);
         for (int i = 0; i < colorsAmount; i++)
@@ -81,18 +82,17 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     public GameObject test;
     private void PopulateBaseWithBuckets(RiddleInfo riddle)
     {
+        int orderInPuzzleCounter = 1;
         for (int i = 0; i < 5; i++)
         {
             var randomCell = riddle.riddleCells[Random.Range(0, riddle.riddleCells.Count)];
             if (randomCell.bucketInCell != null)
                 continue;
             var randomColor = ColorPalette[Random.Range(0, ColorPalette.Count)];
-
             var _pickedPrefab = Instantiate(_bucketsLibrary[Random.Range(0, _bucketsLibrary.Count)], randomCell.transform);
-
             var _bucket = _pickedPrefab.GetComponent<Bucket>();
-
-
+            _bucket.orderInRiddle = orderInPuzzleCounter;
+            orderInPuzzleCounter++;
             _bucket.paintColor = ColorPalette[Random.Range(0, ColorPalette.Count)];
             randomCell.SetInteractable(_bucket);
 

@@ -7,6 +7,7 @@ public class Gameplay : Singleton<Gameplay>
 {
 
     public static RiddleInfo currentRiddle;
+    public static int currentRiddleStep = 1;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class Gameplay : Singleton<Gameplay>
     private void OnRiddleGenerated(RiddleInfo arg0)
     {
         currentRiddle = arg0;
+        currentRiddleStep = 1;
     }
 
     // Update is called once per frame
