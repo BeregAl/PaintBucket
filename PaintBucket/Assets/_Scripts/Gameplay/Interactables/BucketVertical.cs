@@ -11,7 +11,7 @@ public class BucketVertical : Bucket
     {
         foreach (var cell in AffectedCells)
         {
-            cell.cellGraphic.SetColor(paintColor);
+            cell.cellGraphic.SetColorFromPalette(paintColor, CellAnimationType.ToColor);
         }
         base.OnPress();
     }

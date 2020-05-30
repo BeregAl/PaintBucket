@@ -23,7 +23,7 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
         }
     }
 
-    public Color32 paintColor;
+    public int paintColor;
     //public string bucketName;
     public BucketGraphics bucketGraphics;
 
@@ -107,11 +107,11 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
 
     public virtual void OnPress()
     {
-        if (orderInRiddle == Gameplay.currentRiddleStep)
+        /*if (orderInRiddle == Gameplay.currentRiddleStep)
         {
             Gameplay.currentRiddleStep++;
             Destroy(this.gameObject);
-        }
+        }*/
     }
 
     

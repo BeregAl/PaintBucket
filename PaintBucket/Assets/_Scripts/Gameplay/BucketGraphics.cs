@@ -12,9 +12,9 @@ public class BucketGraphics : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI numberText;
 
-    internal void SetColor(Color32 paintColor)
+    internal void SetColor(int paintColor)
     {
-        bucketImage.color = paintColor;
+        bucketImage.color = Gameplay.ColorPalette[paintColor];
     }
     public void SetNumber(int number)
     {

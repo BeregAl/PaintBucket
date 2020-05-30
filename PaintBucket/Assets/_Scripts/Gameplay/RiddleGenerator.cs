@@ -18,7 +18,6 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     [SerializeField]
     private List<GameObject> _bucketsLibrary = new List<GameObject>();
 
-    public Dictionary<int, Color32> ColorPalette = new Dictionary<int, Color32>();
 
     public UnityAction<RiddleInfo> onRiddleGenerated;
     public RiddleInfo currentRiddleGeneration;
@@ -40,13 +39,14 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
 
     private void GenerateColors(int colorsAmount = 3)
     {
-        ColorPalette.Clear();
+        Gameplay.ColorPalette.Clear();
+        Gameplay.ColorPalette.Add(0,Color.white);
         var baseColor = UnityEngine.Random.ColorHSV(0, 1, 0.5f, 1f, 1f, 1f, 1f, 1f);
         Color.RGBToHSV(baseColor, out float baseH, out float baseS, out float baseV);
-        for (int i = 0; i < colorsAmount; i++)
+        for (int i = 1; i <= colorsAmount; i++)
         {
             var covertedColor = Color.HSVToRGB((baseH + ((float)i) / colorsAmount) % 1f, baseS, baseV);
-            ColorPalette.Add(i, new Color32((byte)(covertedColor.r * 255), (byte)(covertedColor.g * 255), (byte)(covertedColor.b * 255), 255));
+            Gameplay.ColorPalette.Add(i, new Color32((byte)(covertedColor.r * 255), (byte)(covertedColor.g * 255), (byte)(covertedColor.b * 255), 255));
             //Debug.Log($"Generated H {baseH + i / colorsAmount}");
             //Debug.Log($"Generated Color {covertedColor}");
         }
@@ -82,18 +82,20 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     public GameObject test;
     private void PopulateBaseWithBuckets(RiddleInfo riddle)
     {
+        Gameplay.RiddleSolution.Clear();
         int orderInPuzzleCounter = 1;
         for (int i = 0; i < 5; i++)
         {
             var randomCell = riddle.riddleCells[Random.Range(0, riddle.riddleCells.Count)];
             if (randomCell.bucketInCell != null)
                 continue;
-            var randomColor = ColorPalette[Random.Range(0, ColorPalette.Count)];
+            var randomColor = Gameplay.ColorPalette[Random.Range(1, Gameplay.ColorPalette.Count)];
             var _pickedPrefab = Instantiate(_bucketsLibrary[Random.Range(0, _bucketsLibrary.Count)], randomCell.transform);
             var _bucket = _pickedPrefab.GetComponent<Bucket>();
             _bucket.orderInRiddle = orderInPuzzleCounter;
             orderInPuzzleCounter++;
-            _bucket.paintColor = ColorPalette[Random.Range(0, ColorPalette.Count)];
+            Gameplay.RiddleSolution.Add(_bucket);
+            _bucket.paintColor = Random.Range(1, Gameplay.ColorPalette.Count);
             randomCell.SetInteractable(_bucket);
 
             //_bucketsLibrary.Add(_bucket);

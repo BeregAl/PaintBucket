@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class Gameplay : Singleton<Gameplay>
 {
+    public const float ANIMATION_TIME = 0.3f;
 
     public static RiddleInfo currentRiddle;
     public static int currentRiddleStep = 1;
+
+    public static Dictionary<int, Color32> ColorPalette = new Dictionary<int, Color32>();
+    public static List<Bucket> RiddleSolution = new List<Bucket>();
+
+
+
 
     private void Awake()
     {
