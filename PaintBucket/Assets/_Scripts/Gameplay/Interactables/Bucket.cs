@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket type, remove bucket from list, remove all buckets of the same type
 {
 
     public BucketType bucketType;
+    
 
     private Cell _cell;
     public Cell cell
@@ -30,6 +32,10 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
     public Button button;
 
     public List<Cell> AffectedCells;
+
+    public UnityAction onBucketPressed;
+
+
 
     private int _orderInRiddle = 1;
     public int orderInRiddle
@@ -107,11 +113,14 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
 
     public virtual void OnPress()
     {
+        onBucketPressed.Invoke();
         /*if (orderInRiddle == Gameplay.currentRiddleStep)
         {
             Gameplay.currentRiddleStep++;
             Destroy(this.gameObject);
         }*/
+
+
     }
 
     

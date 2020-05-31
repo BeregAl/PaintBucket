@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gameplay : Singleton<Gameplay>
 {
@@ -12,7 +13,7 @@ public class Gameplay : Singleton<Gameplay>
 
     public static Dictionary<int, Color32> ColorPalette = new Dictionary<int, Color32>();
     public static List<Bucket> RiddleSolution = new List<Bucket>();
-
+    
 
 
 
@@ -31,6 +32,7 @@ public class Gameplay : Singleton<Gameplay>
     {
         currentRiddle = arg0;
         currentRiddleStep = 1;
+        RiddleTarget.CountSolution();
     }
 
     // Update is called once per frame
@@ -42,5 +44,11 @@ public class Gameplay : Singleton<Gameplay>
     private void OnDestroy()
     {
         RiddleGenerator.instance.onRiddleGenerated -= OnRiddleGenerated;
+    }
+
+    public static void RiddleSolved()
+    {
+        Debug.Log("GenerateRiddle");
+        RiddleGenerator.instance.GenerateRiddle();
     }
 }

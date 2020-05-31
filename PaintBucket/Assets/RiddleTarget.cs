@@ -16,24 +16,48 @@ public class RiddleTarget : MonoBehaviour
         
     }
 
-    public void HighlightTargetCells()
+    private static Dictionary<Cell, int> _solutionCells = new Dictionary<Cell, int>();
+
+    public static void CountSolution()
     {
-        Dictionary<Cell, int> _affectedCells = new Dictionary<Cell, int>();
+        _solutionCells.Clear();
         for (int i = Gameplay.RiddleSolution.Count-1; i >=0 ; i--)
         {
             var bucket = Gameplay.RiddleSolution[i];
             foreach (var cell in bucket.AffectedCells)
             {
-                if (_affectedCells.ContainsKey(cell) == false)
+                if (_solutionCells.ContainsKey(cell) == false)
                 {
-                    _affectedCells.Add(cell, bucket.paintColor);
+                    _solutionCells.Add(cell, bucket.paintColor);
                 }
             }
         }
+    }
 
-        foreach (var cell in _affectedCells)
+    public void HighlightTargetCells()
+    {
+        foreach (var cell in _solutionCells)
         {
             cell.Key.cellGraphic.SetColorFromPalette(cell.Value, CellAnimationType.ToColorAndBack);
+        }
+    }
+
+    public static void CheckRiddleSolved()
+    {
+        bool isSolved = true;
+        foreach (var cell in _solutionCells)
+        {
+            if (cell.Key.cellGraphic.currentColor != cell.Value)
+            {
+                isSolved = false;
+                Debug.Log($"Not solved {cell.Key.cellGraphic.currentColor} != {cell.Value} at {cell.Key.coordinates}");
+                break;
+            }
+        }
+        if (isSolved)
+        {
+            Debug.Log("Solved");
+            Gameplay.RiddleSolved();
         }
     }
     

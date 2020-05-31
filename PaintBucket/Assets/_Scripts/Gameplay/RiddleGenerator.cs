@@ -30,6 +30,7 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
 
     public void GenerateRiddle()
     {
+        ClearPreviousLevel();
         GenerateColors(5);
         currentRiddleGeneration = CreateEmptyBase(new Vector2Int(5, 5));
         PopulateBaseWithBuckets(currentRiddleGeneration);
@@ -39,7 +40,6 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
 
     private void GenerateColors(int colorsAmount = 3)
     {
-        Gameplay.ColorPalette.Clear();
         Gameplay.ColorPalette.Add(0,Color.white);
         var baseColor = UnityEngine.Random.ColorHSV(0, 1, 0.5f, 1f, 1f, 1f, 1f, 1f);
         Color.RGBToHSV(baseColor, out float baseH, out float baseS, out float baseV);
@@ -82,8 +82,10 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     public GameObject test;
     private void PopulateBaseWithBuckets(RiddleInfo riddle)
     {
-        Gameplay.RiddleSolution.Clear();
         int orderInPuzzleCounter = 1;
+        
+
+
         for (int i = 0; i < 5; i++)
         {
             var randomCell = riddle.riddleCells[Random.Range(0, riddle.riddleCells.Count)];
@@ -92,6 +94,7 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
             var randomColor = Gameplay.ColorPalette[Random.Range(1, Gameplay.ColorPalette.Count)];
             var _pickedPrefab = Instantiate(_bucketsLibrary[Random.Range(0, _bucketsLibrary.Count)], randomCell.transform);
             var _bucket = _pickedPrefab.GetComponent<Bucket>();
+            _bucket.onBucketPressed += RiddleTarget.CheckRiddleSolved;
             _bucket.orderInRiddle = orderInPuzzleCounter;
             orderInPuzzleCounter++;
             Gameplay.RiddleSolution.Add(_bucket);
@@ -101,6 +104,20 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
             //_bucketsLibrary.Add(_bucket);
         }
 
+    }
+
+    public void ClearPreviousLevel()
+    {
+        Gameplay.RiddleSolution.Clear();
+        Gameplay.ColorPalette.Clear();
+        if (currentRiddleGeneration != null)
+        {
+            for (int i = 0; i < currentRiddleGeneration.riddleCells.Count; i++)
+            {
+                Destroy(currentRiddleGeneration.riddleCells[i].transform.parent.gameObject);
+            }
+
+        }
     }
 
 }
