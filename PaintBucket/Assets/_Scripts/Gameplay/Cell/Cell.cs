@@ -10,6 +10,8 @@ public class Cell : SerializedMonoBehaviour
     public CellGraphic cellGraphic;
     public CellType cellType;
 
+    public GameObject cellGraphicNew;
+
     [SerializeField]
     //public Bucket bucketInCell { get; private set; }
     public Bucket bucketInCell { get; private set; }

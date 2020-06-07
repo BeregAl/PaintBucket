@@ -18,6 +18,9 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
     [SerializeField]
     private List<GameObject> _bucketsLibrary = new List<GameObject>();
 
+    public GameObject cellGraphicPref;
+    public GridLayoutGroup graphicGrid;
+
 
     public UnityAction<RiddleInfo> onRiddleGenerated;
     public RiddleInfo currentRiddleGeneration;
@@ -73,6 +76,9 @@ public class RiddleGenerator : Singleton<RiddleGenerator>
                 _tile.name = $"Cell {j}x{i}";
                 var _cellGraphic = _tile.GetComponentInChildren<CellGraphic>();
                 _riddle.riddleCells.Add(_cell);
+
+                GameObject graphicPref = Instantiate(cellGraphicPref, graphicGrid.transform);
+                _cell.cellGraphicNew = graphicPref;
             }
         }
         return _riddle;

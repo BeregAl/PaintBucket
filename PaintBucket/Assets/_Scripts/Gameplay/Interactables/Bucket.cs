@@ -49,6 +49,8 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
             _orderInRiddle = value;
             bucketGraphics.SetNumber(value);
 
+
+
         }
     }
 
@@ -119,7 +121,6 @@ public class Bucket : SerializedMonoBehaviour // TODO: generate random bucket ty
             Gameplay.currentRiddleStep++;
             Destroy(this.gameObject);
         }*/
-
 
     }
 

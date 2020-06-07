@@ -13,9 +13,12 @@ public class Gameplay : Singleton<Gameplay>
 
     public static Dictionary<int, Color32> ColorPalette = new Dictionary<int, Color32>();
     public static List<Bucket> RiddleSolution = new List<Bucket>();
-    
 
+    public GameObject mask;
+    public GameObject gridOfMask;
 
+    public static int _sortingOrder = 0;
+    public static int _frontSortingOrder = 100;
 
     private void Awake()
     {
@@ -51,4 +54,5 @@ public class Gameplay : Singleton<Gameplay>
         Debug.Log("GenerateRiddle");
         RiddleGenerator.instance.GenerateRiddle();
     }
+
 }
